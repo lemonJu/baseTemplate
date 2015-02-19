@@ -7,31 +7,35 @@
 </head>
 
 <body>
-    <div id="content"></div>
     <div id="app">
         <% if (print) { %>
-			<h1><%=title%></h1>
+            <h1><%=title%></h1>
             <ol>
                 <% for (var i=0 ; i < list.length; i ++) { %>
                     <li>索引
                         <%=i + 1 %> ：
                             <%=list[i] %>
                     </li>
-                <% } %>
+                    <% } %>
             </ol>
-		<% } %>
-    </div>
-    <div id="app">
-		
+            <% } %>
     </div>
 </body>
 <script>
-var data = {
-    title: '例子',
-    print: true,
-    list: ['123', '222', '333', '44']
-};
-var html = template.render('app', data);
+template.render('app', function($oper) {
+    $oper.setData({
+        title: '例子',
+        print: true,
+        list: ['123', '222', '333', '44']
+    })
+    setTimeout(function() {
+        $oper.setData({
+            title: '成功！',
+            print: true,
+            list: ['成功！', '成功！', '成功！']
+        })
+    }, 1000)
+})
 </script>
 
 </html>
